@@ -1,10 +1,15 @@
-#root
+:root
   font-size: 16px
 
-body
+#root
+  overflow-y: auto
+
+html,body,#root
   height: 100%
+
+body
   overflow: hidden
-  
+
 @mixin max-width($width,$font-size)
   @media only screen and (max-width:$width)
     font-size: $font-size
@@ -25,3 +30,12 @@ body
 
   --color: #2b009e
 
+/* width */
+::-webkit-scrollbar
+  width: 10px
+
+/* Handle */
+::-webkit-scrollbar-thumb
+  background: var(--color)
+  border: solid 3px white
+  border-radius: 10px

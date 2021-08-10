@@ -3,6 +3,8 @@ import Character from "../../../types/Character";
 import { Quote } from "../../../types/Quote";
 import { Icon } from "@iconify/react";
 import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
+import Spinner from "../../../components/Spinner";
 
 const Container = styled.div`
   padding: 0 20px;
@@ -61,13 +63,27 @@ type Props = {
      fails it will be undefined and error
      message will be shown at place of quotes */
 };
+
 const StyledCharacterDetail = ({ character, quotes }: Props) => {
+  useEffect(() => {
+    const eventListnerCallBack = ({ key }: KeyboardEvent) => {
+      if (key === "Escape") routeToHomePage();
+    };
+    document.addEventListener("keydown", eventListnerCallBack);
+    return () => {
+      document.removeEventListener("keypress", eventListnerCallBack);
+    };
+  });
+
   const history = useHistory();
+  const routeToHomePage = () => {
+    history.push("/");
+  };
   return (
     <Container>
       {
         <>
-          <div className="close-modal" onClick={() => history.push("/")}>
+          <div className="close-modal" onClick={routeToHomePage}>
             <Icon icon="clarity:window-close-line" />
           </div>
           <div className="name-and-image">
@@ -92,11 +108,15 @@ const StyledCharacterDetail = ({ character, quotes }: Props) => {
             <p className="appearance">
               Seasons: {character.appearance.join(" ")}
             </p>
-            {quotes?.map((quote) => (
-              <q key={quote.quote_id} className="quote">
-                {quote.quote}
-              </q>
-            ))}
+            {!quotes ? (
+              <Spinner />
+            ) : (
+              quotes?.map((quote) => (
+                <q key={quote.quote_id} className="quote">
+                  {quote.quote}
+                </q>
+              ))
+            )}
           </div>
         </>
       }

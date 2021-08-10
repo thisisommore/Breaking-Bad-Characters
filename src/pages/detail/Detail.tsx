@@ -38,7 +38,7 @@ export const Detail = () => {
   }, [getCharacter, getQuotes, id, location.state, setCharacter, setQuotes]);
   return (
     <Modal>
-      {loading && <Spinner />}
+      {loading && !character && <Spinner />}
       {character && (
         <StyledCharacterDetail
           character={character}
