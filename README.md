@@ -11,6 +11,14 @@
 - [`src/pages`](https://github.com/thisisommore/Breaking-Bad-Characters/tree/main/src/pages) folder contains all components used with routing
 - [`src/types`](https://github.com/thisisommore/Breaking-Bad-Characters/tree/main/src/types) folder contains common types used throughout app
 
+## Why I did this way
+
+- [`src/api/http-hook.ts`](https://github.com/thisisommore/Breaking-Bad-Characters/blob/main/src/api/http-hook.ts)
+  - Api hook to remove overhead of managing common state variables like loading, error.
+  - Hook adds interceptors to axios request and response and update state as request proceeds.
+- [`src/App.sass`](https://github.com/thisisommore/Breaking-Bad-Characters/blob/main/src/App.sass)
+  - Sass styling instead of normal css styling to improve code reliability.
+  - In Sass mixins and intendation instead of cruly braces are used which reduces code lines.
 
 # Getting Started with Create React App
 
