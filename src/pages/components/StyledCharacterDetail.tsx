@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import InfoCard from "../../components/InfoCard";
-import Charactor from "../../types/Charactor";
+import Character from "../../types/Character";
 
 const Container = styled.div`
   padding: 20px;
@@ -14,7 +14,7 @@ const Container = styled.div`
     height: 100%;
     max-width: 40%;
 
-    .charactor-image {
+    .character-image {
       max-width: 90%;
       max-height: 70%;
       object-fit: contain;
@@ -23,7 +23,7 @@ const Container = styled.div`
     @media only screen and (max-width: 542px) {
       max-width: 100%;
       height: 50%;
-      .charactor-image {
+      .character-image {
         max-width: 100%;
         max-height: 100%;
       }
@@ -39,35 +39,36 @@ const Container = styled.div`
 `;
 
 type Props = {
-  charactor?: Charactor;
+  character?: Character;
 };
-export const StyledCharactorDetail = (props: Props) => {
+const StyledCharacterDetail = (props: Props) => {
   return (
     <Container>
-      {props.charactor ? (
+      {props.character ? (
         <>
           <div className="name-and-image">
-            <p className="name">{props.charactor.name}</p>
+            <p className="name">{props.character.name}</p>
             <img
-              className="charactor-image"
-              src={props.charactor.img}
-              alt={`${props.charactor.name}`}
+              className="character-image"
+              src={props.character.img}
+              alt={`${props.character.name}`}
             />
           </div>
           <div className="more-details">
-            <p className="birthdate">{props.charactor.birthday}</p>
-            <p className="occupation">{props.charactor.occupation}</p>
-            <p className="status">{props.charactor.status}</p>
-            <p className="nickname">{props.charactor.nickname}</p>
-            <p className="portrayed">{props.charactor.portrayed}</p>
+            <p className="birthdate">{props.character.birthday}</p>
+            <p className="occupation">{props.character.occupation}</p>
+            <p className="status">{props.character.status}</p>
+            <p className="nickname">{props.character.nickname}</p>
+            <p className="portrayed">{props.character.portrayed}</p>
             <p className="appearance">
-              Seasons: {props.charactor.appearance.join(" ")}
+              Seasons: {props.character.appearance.join(" ")}
             </p>
           </div>
         </>
       ) : (
-        <InfoCard>Charactor not selected</InfoCard>
+        <InfoCard>Character not selected</InfoCard>
       )}
     </Container>
   );
 };
+export default StyledCharacterDetail;

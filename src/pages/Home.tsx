@@ -3,51 +3,51 @@ import useHttp from "../api/http-hook";
 import InfoCard from "../components/InfoCard";
 import Modal from "../components/Modal";
 import Spinner from "../components/Spinner";
-import Charactors from "../types/Charactors";
-import Charactor from "../types/Charactor";
-import StyledCharactor from "./components/StyledCharactor";
-import StyledCharactors from "./components/StyledCharactors";
+import Characters from "../types/Characters";
+import Character from "../types/Character";
+import StyledCharacter from "./components/StyledCharacter";
+import StyledCharacters from "./components/StyledCharacters";
 import StyledHeader from "./components/StyledHeader";
-import { StyledCharactorDetail } from "./components/StyledCharactorDetail";
+import StyledCharacterDetail from "./components/StyledCharacterDetail";
 
 function Home() {
-  const [charactors, setCharactors] = useState<Charactors>();
-  const { loading, error, getCharactors } = useHttp();
-  const [currentCharactor, setCurrentCharactor] = useState<Charactor>();
+  const [characters, setCharacters] = useState<Characters>();
+  const { loading, error, getCharacters } = useHttp();
+  const [currentCharacter, setCurrentCharacter] = useState<Character>();
   useEffect(() => {
-    async function fetchCharactors() {
-      const response = await getCharactors();
-      setCharactors(response.data);
+    async function fetchCharacters() {
+      const response = await getCharacters();
+      setCharacters(response.data);
     }
-    fetchCharactors();
-  }, [getCharactors, setCharactors]);
+    fetchCharacters();
+  }, [getCharacters, setCharacters]);
 
-  const viewDetail = (charactor: Charactor) => {
-    setCurrentCharactor(charactor);
+  const viewDetail = (character: Character) => {
+    setCurrentCharacter(character);
   };
 
   return (
     <>
-      <StyledHeader>Breaking Bad Charactors</StyledHeader>
+      <StyledHeader>Breaking Bad Characters</StyledHeader>
       {error && (
         <InfoCard error={!!error}>{error.message ?? "Error occured"}</InfoCard>
       )}
       {loading && <Spinner></Spinner>}
-      <StyledCharactors style={{ marginLeft: 20 }}>
-        {charactors
-          ? charactors.map((charactor) => (
-              <StyledCharactor
-                onClick={() => viewDetail(charactor)}
-                key={charactor.char_id}
-                charactor={charactor}
-              ></StyledCharactor>
+      <StyledCharacters style={{ marginLeft: 20 }}>
+        {characters
+          ? characters.map((character) => (
+              <StyledCharacter
+                onClick={() => viewDetail(character)}
+                key={character.char_id}
+                character={character}
+              ></StyledCharacter>
             ))
-          : !error && !loading && <p>No charactors present</p>}
-      </StyledCharactors>
-      <Modal visible={!!currentCharactor}>
-        <StyledCharactorDetail
-          charactor={currentCharactor}
-        ></StyledCharactorDetail>
+          : !error && !loading && <p>No characters present</p>}
+      </StyledCharacters>
+      <Modal visible={!!currentCharacter}>
+        <StyledCharacterDetail
+          character={currentCharacter}
+        ></StyledCharacterDetail>
       </Modal>
     </>
   );

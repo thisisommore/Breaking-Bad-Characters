@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axiosInstance from "../config/axios-config";
-import getCharactors from "./CharactorsAPI";
+import getCharacters from "./CharactersAPI";
 
 const useHttp = () => {
   const [loading, setLoading] = useState(false);
@@ -30,7 +30,7 @@ const useHttp = () => {
     }
   );
 
-  return { loading, error, getCharactors };
+  return { loading, error, getCharacters };
 };
 
 export default useHttp;

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Charactor from "../../types/Charactor";
+import Character from "../../types/Character";
 const Container = styled.div`
   background-color: #f7f7f7;
   border-radius: 11px;
@@ -27,23 +27,23 @@ const Container = styled.div`
 `;
 
 type Props = {
-  charactor: Charactor;
+  character: Character;
   [key: string]: any;
 };
-function StyledCharactor(props: Props) {
+function StyledCharacter(props: Props) {
   return (
     <Container {...props}>
-      <p className="name">{props.charactor.name}</p>
+      <p className="name">{props.character.name}</p>
       <div className="occupations">
-        {props.charactor.occupation.map((ele, i) => (
+        {props.character.occupation.map((ele, i) => (
           <p key={i}>{ele}</p>
         ))}
       </div>
       <div className="birthdate">
-        <p>{props.charactor.birthday}</p>
+        <p>{props.character.birthday}</p>
       </div>
     </Container>
   );
 }
 
-export default StyledCharactor;
+export default StyledCharacter;
