@@ -5,11 +5,11 @@
 - I then installed packages like axios and styled-components
 
 ## Project structure
-- [`api`](https://github.com/thisisommore/Breaking-Bad-Characters/tree/main/src/api) folder contains all api code
-- [`components`](https://github.com/thisisommore/Breaking-Bad-Characters/tree/main/src/components) folder contains all common components
-- [`config`](https://github.com/thisisommore/Breaking-Bad-Characters/tree/main/src/config) folder contains configuration used
-- [`pages`](https://github.com/thisisommore/Breaking-Bad-Characters/tree/main/src/pages) folder contains all components used with routing
-- [`types`](https://github.com/thisisommore/Breaking-Bad-Characters/tree/main/src/types) folder contains common types used throughout app
+- [`src/api`](https://github.com/thisisommore/Breaking-Bad-Characters/tree/main/src/api) folder contains all api code
+- [`src/components`](https://github.com/thisisommore/Breaking-Bad-Characters/tree/main/src/components) folder contains all common components
+- [`src/config`](https://github.com/thisisommore/Breaking-Bad-Characters/tree/main/src/config) folder contains configuration used
+- [`src/pages`](https://github.com/thisisommore/Breaking-Bad-Characters/tree/main/src/pages) folder contains all components used with routing
+- [`src/types`](https://github.com/thisisommore/Breaking-Bad-Characters/tree/main/src/types) folder contains common types used throughout app
 
 
 # Getting Started with Create React App
