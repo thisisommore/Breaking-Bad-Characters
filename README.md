@@ -1,3 +1,17 @@
+## How did I setup this project
+
+- I used `create-react-app` to bootstrap project with typescript template
+  - Full command is as follows `npx create-react-app --template=typescript`
+- I then installed packages like axios and styled-components
+
+## Project structure
+- [`api`](https://github.com/thisisommore/Breaking-Bad-Characters/tree/main/src/api) folder contains all api code
+- [`components`](https://github.com/thisisommore/Breaking-Bad-Characters/tree/main/src/components) folder contains all common components
+- [`config`](https://github.com/thisisommore/Breaking-Bad-Characters/tree/main/src/config) folder contains configuration used
+- [`pages`](https://github.com/thisisommore/Breaking-Bad-Characters/tree/main/src/pages) folder contains all components used with routing
+- [`types`](https://github.com/thisisommore/Breaking-Bad-Characters/tree/main/src/types) folder contains common types used throughout app
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
