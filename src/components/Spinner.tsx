@@ -3,6 +3,7 @@ import styled from "styled-components";
 export default styled.div`
   align-self: center;
   margin-left: 30px;
+  margin-top: 10px;
   border: 4px solid white;
   border-top: 4px solid #2b009e;
   border-radius: 50%;
