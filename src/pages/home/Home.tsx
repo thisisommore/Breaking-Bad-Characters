@@ -1,29 +1,35 @@
 import { useEffect, useState } from "react";
-import useHttp from "../api/http-hook";
-import InfoCard from "../components/InfoCard";
-import Modal from "../components/Modal";
-import Spinner from "../components/Spinner";
-import Characters from "../types/Characters";
-import Character from "../types/Character";
+import useHttp from "../../api/http-hook";
+import InfoCard from "../../components/InfoCard";
+import Spinner from "../../components/Spinner";
+import Characters from "../../types/Characters";
+import Character from "../../types/Character";
+
 import StyledCharacter from "./components/StyledCharacter";
 import StyledCharacters from "./components/StyledCharacters";
 import StyledHeader from "./components/StyledHeader";
-import StyledCharacterDetail from "./components/StyledCharacterDetail";
+import { useHistory } from "react-router-dom";
 
 function Home() {
   const [characters, setCharacters] = useState<Characters>();
   const { loading, error, getCharacters } = useHttp();
-  const [currentCharacter, setCurrentCharacter] = useState<Character>();
+  const history = useHistory();
   useEffect(() => {
+    let isCancelled = false;
     async function fetchCharacters() {
       const response = await getCharacters();
-      setCharacters(response.data);
+
+      if (!isCancelled) setCharacters(response.data);
     }
     fetchCharacters();
+    return () => {
+      isCancelled = true;
+    };
   }, [getCharacters, setCharacters]);
 
   const viewDetail = (character: Character) => {
-    setCurrentCharacter(character);
+    // Pass as state so that detail component won't need to fetch it again
+    history.push("/detail/" + character.char_id, { character });
   };
 
   return (
@@ -44,11 +50,6 @@ function Home() {
             ))
           : !error && !loading && <p>No characters present</p>}
       </StyledCharacters>
-      <Modal visible={!!currentCharacter}>
-        <StyledCharacterDetail
-          character={currentCharacter}
-        ></StyledCharacterDetail>
-      </Modal>
     </>
   );
 }

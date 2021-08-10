@@ -1,36 +1,43 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axiosInstance from "../config/axios-config";
-import getCharacters from "./CharactersAPI";
+import { getCharacters, getCharacter } from "./CharactersAPI";
+import getQuotes from "./QuotesAPI";
 
 const useHttp = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error>();
 
-  axiosInstance.interceptors.request.use(
-    (value) => {
-      setLoading(true);
-      return value;
-    },
-    (error) => {
-      setLoading(false);
-      setError(error);
-      return Promise.reject(error);
-    }
-  );
+  useEffect(() => {
+    let requestInterceptor = axiosInstance.interceptors.request.use(
+      (value) => {
+        setLoading(true);
+        return value;
+      },
+      (error) => {
+        setLoading(false);
+        setError(error);
+        return Promise.reject(error);
+      }
+    );
 
-  axiosInstance.interceptors.response.use(
-    (value) => {
-      setLoading(false);
-      return value;
-    },
-    (error) => {
-      setLoading(false);
-      setError(error);
-      return Promise.reject(error);
-    }
-  );
+    let responseInterceptor = axiosInstance.interceptors.response.use(
+      (value) => {
+        setLoading(false);
+        return value;
+      },
+      (error) => {
+        setLoading(false);
+        setError(error);
+        return Promise.reject(error);
+      }
+    );
+    return () => {
+      axiosInstance.interceptors.request.eject(requestInterceptor);
+      axiosInstance.interceptors.response.eject(responseInterceptor);
+    };
+  }, []);
 
-  return { loading, error, getCharacters };
+  return { loading, error, getCharacters, getCharacter, getQuotes };
 };
 
 export default useHttp;

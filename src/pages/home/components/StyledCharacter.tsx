@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import Character from "../../types/Character";
+import Character from "../../../types/Character";
 const Container = styled.div`
   background-color: #f7f7f7;
   border-radius: 11px;
   box-shadow: 0 0 4px #b5b5b5;
   margin: 10px;
   padding: 10px;
-  display: inline-block;
-
+  display: flex;
+  flex-direction: column;
   .name {
     font-size: var(--font-md);
     color: var(--color);
