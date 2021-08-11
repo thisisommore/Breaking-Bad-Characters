@@ -6,7 +6,7 @@ const Modal = styled.div`
   left: 0;
   height: 100vh;
   width: 100vw;
-  padding-top: 8vh;
+  padding-top: 10px;
   backdrop-filter: blur(24px);
   z-index: 4;
   overflow-y: auto;
