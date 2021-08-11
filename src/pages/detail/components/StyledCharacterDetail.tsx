@@ -46,6 +46,10 @@ const Container = styled.div`
     @media only screen and (max-width: 542px) {
       width: 100%;
     }
+
+    .quote {
+      display: block;
+    }
   }
 
   .close-modal {
