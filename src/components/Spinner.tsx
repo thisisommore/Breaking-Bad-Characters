@@ -5,7 +5,7 @@ export default styled.div`
   margin-left: 30px;
   margin-top: 10px;
   border: 4px solid white;
-  border-top: 4px solid #2b009e;
+  border-top: 4px solid var(--color);
   border-radius: 50%;
   width: 20px;
   height: 20px;
