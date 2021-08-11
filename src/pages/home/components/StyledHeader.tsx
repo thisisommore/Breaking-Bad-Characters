@@ -21,6 +21,7 @@ const StyledHeader = styled.header`
   .disabled {
     cursor: initial;
     color: #8a60ff;
+    pointer-events: none;
   }
 `;
 export default StyledHeader;
