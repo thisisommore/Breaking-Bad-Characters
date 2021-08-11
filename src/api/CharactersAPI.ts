@@ -1,11 +1,11 @@
 import axiosInstance from "../config/axios-config";
 import Characters from "../types/Characters";
 
-export function getCharacters(pageNo = 0) {
+export function getCharacters(pageNo = 0, limit = 10) {
   return axiosInstance.get<Characters>(`/characters`, {
     params: {
-      limit: 10,
-      offset: pageNo * 10,
+      limit,
+      offset: pageNo * limit,
     },
   });
 }
