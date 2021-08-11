@@ -49,6 +49,7 @@ const Container = styled.div`
 
     .quote {
       display: block;
+      margin-bottom: 8px;
     }
     padding-bottom: 20px;
   }
