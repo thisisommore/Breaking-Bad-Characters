@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axiosInstance from "../config/axios-config";
 import { getCharacters, getCharacter } from "./CharactersAPI";
-import getQuotes from "./QuotesAPI";
+import getQuote from "./QuotesAPI";
 
 const useHttp = () => {
   const [loading, setLoading] = useState(false);
@@ -37,7 +37,7 @@ const useHttp = () => {
     };
   }, []);
 
-  return { loading, error, getCharacters, getCharacter, getQuotes };
+  return { loading, error, getCharacters, getCharacter, getQuote };
 };
 
 export default useHttp;
