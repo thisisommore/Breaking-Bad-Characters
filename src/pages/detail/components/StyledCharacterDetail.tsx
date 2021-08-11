@@ -36,7 +36,7 @@ const Container = styled.div`
       height: 50%;
       .character-image {
         max-width: 100%;
-        max-height: 100%;
+        max-height: 90%;
       }
     }
   }
@@ -50,12 +50,13 @@ const Container = styled.div`
     .quote {
       display: block;
     }
+    padding-bottom: 20px;
   }
 
   .close-modal {
     position: absolute;
     right: 2%;
-    top: 6%;
+    top: 2%;
     font-size: var(--font-lg);
   }
 `;
