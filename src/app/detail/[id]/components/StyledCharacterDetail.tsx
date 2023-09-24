@@ -21,22 +21,25 @@ const Container = styled.div`
   .name-and-image {
     display: inline;
     height: 100%;
-    width: 30%;
+    max-width: 40%;
     .name {
       font-size: var(--font-sm);
       margin: 0;
     }
-    .character-image {
+    .c-character-image {
       position: relative;
-      max-width: 90%;
-      height: 90%;
+      max-width: 96%;
       max-height: 70%;
+
+      .character-image {
+        position: static !important;
+      }
     }
 
     @media only screen and (max-width: 542px) {
       max-width: 100%;
       height: 50%;
-      .character-image {
+      .c-character-image {
         max-width: 100%;
         max-height: 90%;
       }
@@ -95,8 +98,9 @@ const StyledCharacterDetail = ({ character, quotes }: Props) => {
           </div>
           <div className="name-and-image">
             <p className="name">{character.name}</p>
-            <div className="character-image">
+            <div className="c-character-image">
               <Image
+                className="character-image"
                 src={character.image_url}
                 alt={`${character.name}`}
                 fill={true}
