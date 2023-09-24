@@ -1,4 +1,5 @@
-import React, { ErrorInfo } from "react";
+"use client";
+import React, { ErrorInfo, ReactNode } from "react";
 import styled from "styled-components";
 import InfoCard from "./InfoCard";
 
@@ -7,7 +8,16 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
 `;
-export default class ErrorBoundary extends React.Component {
+
+interface Props {
+  children?: ReactNode;
+}
+
+interface State {
+  hasError: boolean;
+}
+
+export default class ErrorBoundary extends React.Component<Props, State> {
   state = {
     hasError: false,
   };

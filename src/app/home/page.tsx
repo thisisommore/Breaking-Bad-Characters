@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import useHttp from "../../api/http-hook";
 import InfoCard from "../../components/InfoCard";
@@ -8,15 +9,17 @@ import Character from "../../types/Character";
 import StyledCharacter from "./components/StyledCharacter";
 import StyledCharacters from "./components/StyledCharacters";
 import StyledHeader from "./components/StyledHeader";
-import { useHistory } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import { GetCharsResponse } from "@/api/CharactersAPI";
+import { useRouter } from "next/navigation";
 
-function Home() {
-  const [characters, setCharacters] = useState<Characters>();
-  const [nextPageCharacters, setNextPageCharacters] = useState<Characters>();
+const Home = () => {
+  const router = useRouter();
+  const [characters, setCharacters] = useState<GetCharsResponse>();
+  const [nextPageCharacters, setNextPageCharacters] =
+    useState<GetCharsResponse>();
   const [pageNo, setPageNo] = useState(0);
   const { loading, error, getCharacters } = useHttp();
-  const history = useHistory();
   useEffect(() => {
     let isCancelled = false;
     async function fetchCharacters() {
@@ -38,9 +41,10 @@ function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getCharacters, setCharacters]);
 
-  const viewDetail = (character: Character) => {
+  const viewDetail = (char_id: string) => {
+    // TODO
     // Pass as state so that detail component won't need to fetch it again
-    history.push("/detail/" + character.char_id, { character });
+    router.push("/detail/" + char_id);
   };
 
   const showNextPage = async () => {
@@ -86,8 +90,8 @@ function Home() {
         {characters
           ? characters.map((character) => (
               <StyledCharacter
-                onClick={() => viewDetail(character)}
-                key={character.char_id}
+                onClick={() => viewDetail(character._id)}
+                key={character._id}
                 character={character}
               ></StyledCharacter>
             ))
@@ -95,6 +99,6 @@ function Home() {
       </StyledCharacters>
     </>
   );
-}
+};
 
 export default Home;

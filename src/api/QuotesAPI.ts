@@ -1,8 +1,8 @@
 import axiosInstance from "../config/axios-config";
-import { Quote } from "../types/Quote";
 
+export type GetQuotesReponse = string[]
 export default function getQuote(authorName: string) {
-  return axiosInstance.get<Quote[]>(`/quote`, {
+  return axiosInstance.get<GetQuotesReponse>(`/quote`, {
     params: {
       author: authorName,
     },

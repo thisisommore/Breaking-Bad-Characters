@@ -1,6 +1,7 @@
+"use client";
 import React from "react";
 import styled from "styled-components";
-import Character from "../../../types/Character";
+import { GetCharsResponseEle } from "@/api/CharactersAPI";
 const Container = styled.div`
   background-color: #f7f7f7;
   border-radius: 11px;
@@ -27,7 +28,7 @@ const Container = styled.div`
 `;
 
 type Props = {
-  character: Character;
+  character: GetCharsResponseEle;
   [key: string]: any;
 };
 function StyledCharacter(props: Props) {
@@ -40,7 +41,7 @@ function StyledCharacter(props: Props) {
         ))}
       </div>
       <div className="birthdate">
-        <p>{props.character.birthday}</p>
+        <p>{props.character.birth_date}</p>
       </div>
     </Container>
   );

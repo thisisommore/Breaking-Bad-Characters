@@ -1,10 +1,12 @@
 import styled from "styled-components";
-import Character from "../../../types/Character";
-import { Quote } from "../../../types/Quote";
+import Character from "@/types/Character";
+import { Quote } from "@/types/Quote";
 import { Icon } from "@iconify/react";
-import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
-import Spinner from "../../../components/Spinner";
+import Spinner from "@/components/Spinner";
+import { useRouter } from "next/navigation";
+import { GetQuotesReponse } from "@/api/QuotesAPI";
+import Image from "next/image";
 
 const Container = styled.div`
   padding: 0 20px;
@@ -19,16 +21,16 @@ const Container = styled.div`
   .name-and-image {
     display: inline;
     height: 100%;
-    max-width: 40%;
-
+    width: 30%;
     .name {
       font-size: var(--font-sm);
       margin: 0;
     }
     .character-image {
+      position: relative;
       max-width: 90%;
+      height: 90%;
       max-height: 70%;
-      object-fit: contain;
     }
 
     @media only screen and (max-width: 542px) {
@@ -64,7 +66,7 @@ const Container = styled.div`
 
 type Props = {
   character: Character;
-  quotes?: Quote[];
+  quotes?: GetQuotesReponse;
   /* Quotes are optional in case data fetch
      fails it will be undefined and error
      message will be shown at place of quotes */
@@ -80,10 +82,9 @@ const StyledCharacterDetail = ({ character, quotes }: Props) => {
       document.removeEventListener("keypress", eventListnerCallBack);
     };
   });
-
-  const history = useHistory();
+  const router = useRouter();
   const routeToHomePage = () => {
-    history.push("/");
+    router.push("/home");
   };
   return (
     <Container>
@@ -94,32 +95,35 @@ const StyledCharacterDetail = ({ character, quotes }: Props) => {
           </div>
           <div className="name-and-image">
             <p className="name">{character.name}</p>
-            <img
-              className="character-image"
-              src={character.img}
-              alt={`${character.name}`}
-            />
+            <div className="character-image">
+              <Image
+                src={character.image_url}
+                alt={`${character.name}`}
+                fill={true}
+                objectFit="contain"
+              />
+            </div>
           </div>
           <div className="more-details">
-            <p className="birthdate">Birth date: {character.birthday}</p>
+            <p className="birthdate">Birth date: {character.birth_date}</p>
             {character.occupation.map((val, i) => (
               <p key={i} className="occupation">
                 {val}
               </p>
             ))}
 
-            <p className="status">{character.status}</p>
-            <p className="nickname">Nickname: {character.nickname}</p>
+            <p className="status">character.status</p>
+            <p className="nickname">Nickname: {character.name}</p>
             <p className="portrayed">Portrayed by: {character.portrayed}</p>
             <p className="appearance">
-              Seasons: {character.appearance.join(" ")}
+              Seasons: {character.appearances.join(" ")}
             </p>
             {!quotes ? (
               <Spinner />
             ) : (
-              quotes?.map((quote) => (
-                <q key={quote.quote_id} className="quote">
-                  {quote.quote}
+              quotes?.map((quote, i) => (
+                <q key={i} className="quote">
+                  {quote}
                 </q>
               ))
             )}

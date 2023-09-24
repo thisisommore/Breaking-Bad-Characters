@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  font-family: "Cascadia Code", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+:root {
+  font-size: 16px;
+}
+
+#root {
+  overflow-y: auto;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  overflow: auto;
+}
+
+:root {
+  --font-xl: 3rem;
+  --font-lg: 2.5rem;
+  --font-md: 2rem;
+  --font-sm: 1.5rem;
+  --font-xs: 1rem;
+  --color: #2b009e;
+}
+@media only screen and (max-width: 786px) {
+  :root {
+    font-size: 14px;
+  }
+}
+@media only screen and (max-width: 516px) {
+  :root {
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 458px) {
+  :root {
+    font-size: 10px;
+  }
+}
+@media only screen and (max-width: 516px) {
+  :root {
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 381px) {
+  :root {
+    font-size: 9px;
+  }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--color);
+  border: solid 3px white;
+  border-radius: 10px;
+}

@@ -1,13 +1,12 @@
 export default interface Chatactor {
-  char_id: number;
-  name: string;
-  birthday: string;
-  occupation: string[];
-  img: string;
-  status: string;
-  nickname: string;
-  appearance: number[];
-  portrayed: string;
-  category: string;
-  better_call_saul_appearance: number[];
+  id: string
+  name: string
+  portrayed: string
+  image_url: string
+  full_name: string
+  birth_date: string
+  occupation: string[]
+  episodes_count: string
+  series: string
+  appearances: string[]
 }

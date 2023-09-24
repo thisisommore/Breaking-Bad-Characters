@@ -1,8 +1,17 @@
 import axiosInstance from "../config/axios-config";
-import Characters from "../types/Characters";
+import Character from "../types/Character";
+
+
+export type GetCharsResponseEle = {
+  _id: string
+  name: string,
+  occupation: string[],
+  birth_date: string
+}
+export type GetCharsResponse = GetCharsResponseEle[]
 
 export function getCharacters(pageNo = 0, limit = 10) {
-  return axiosInstance.get<Characters>(`/characters`, {
+  return axiosInstance.get<GetCharsResponse>(`/characters`, {
     params: {
       limit,
       offset: pageNo * limit,
@@ -11,5 +20,5 @@ export function getCharacters(pageNo = 0, limit = 10) {
 }
 
 export function getCharacter(charId: string) {
-  return axiosInstance.get<Characters>(`/characters/${charId}`);
+  return axiosInstance.get<Character>(`/characters/${charId}`);
 }
